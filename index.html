@@ -17,7 +17,7 @@
             background-color: #e5e7eb;
         }
 
-        /* Formato A4 Estricto */
+        /* Responsive Smart Layout */
         .page-sheet {
             width: 210mm;
             height: 297mm;
@@ -27,6 +27,17 @@
             position: relative;
             display: none; 
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Ajuste para pantallas pequeñas (Smart Responsive) */
+        @media (max-width: 210mm) {
+            .page-sheet {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                margin-bottom: 20px;
+            }
         }
 
         .page-sheet.active {
@@ -34,9 +45,8 @@
             flex-direction: column;
         }
 
-        /* Contenedor de imagen profesional */
         .img-container {
-            background-color: #f8fafc; /* Fondo gris azulado muy suave */
+            background-color: #f8fafc;
             border: 1px solid #f1f5f9;
             display: flex;
             align-items: center;
@@ -46,10 +56,9 @@
         }
 
         .img-container img {
-            max-width: 92%; /* Pequeño margen interno para que respire */
+            max-width: 92%;
             max-height: 92%;
-            object-fit: contain; /* Garantiza que NADA se salga ni se deforme */
-            transition: transform 0.3s ease;
+            object-fit: contain;
         }
 
         /* Estilo para impresión */
@@ -59,146 +68,140 @@
                 display: block !important; 
                 box-shadow: none; 
                 margin: 0; 
+                width: 210mm !important;
+                height: 297mm !important;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navegación Superior -->
+    <!-- Navegación Superior Responsiva -->
     <nav class="bg-white/80 backdrop-blur-md shadow-sm p-4 sticky top-0 z-50 no-print border-b border-gray-100">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="flex flex-col">
                 <span class="text-[10px] font-black text-purple-600 uppercase tracking-[0.2em]">Propuesta Comercial</span>
-                <h1 class="text-lg font-bold text-gray-800 leading-none">Hotel Tequendama</h1>
+                <h1 class="text-sm md:text-lg font-bold text-gray-800 leading-none">Hotel Tequendama</h1>
             </div>
             
-            <div class="flex items-center gap-4">
-                <div id="status-label" class="text-xs font-semibold text-blue-500 hidden"></div>
-                <button onclick="downloadPDF()" id="btn-pdf" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg transition-all transform active:scale-95 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
-                    Descargar PDF
+            <div class="flex items-center gap-2 md:gap-4">
+                <div id="status-label" class="hidden md:block text-xs font-semibold text-blue-500"></div>
+                <button onclick="downloadPDF()" id="btn-pdf" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 md:px-6 py-2 rounded-full text-xs font-bold shadow-lg transition-all transform active:scale-95 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                    <span class="hidden sm:inline">Descargar PDF</span>
+                    <span class="sm:hidden text-[10px]">PDF</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <main class="py-10 px-4">
+    <main class="py-4 md:py-10 px-2 md:px-4">
         <div class="max-w-[210mm] mx-auto">
             
             <!-- PÁGINA 1: PORTADA -->
-            <section id="page-1" class="page-sheet active p-10 bg-gradient-to-tr from-purple-50 via-white to-indigo-50">
-                <div class="flex-grow flex flex-col items-center justify-center -mt-10">
+            <section id="page-1" class="page-sheet active p-6 md:p-10 bg-gradient-to-tr from-purple-50 via-white to-indigo-50">
+                <div class="flex-grow flex flex-col items-center justify-center -mt-6 md:-mt-10">
                     
-                    <div class="flex items-center gap-10 mb-10">
+                    <div class="flex items-center gap-4 md:gap-10 mb-8 md:mb-10">
                         <div class="text-center group">
-                            <div class="w-44 h-44 rounded-full bg-white shadow-xl flex items-center justify-center border-4 border-purple-600 overflow-hidden transition-transform group-hover:scale-105">
+                            <div class="w-24 h-24 md:w-44 md:h-44 rounded-full bg-white shadow-xl flex items-center justify-center border-2 md:border-4 border-purple-600 overflow-hidden">
                                 <img src="logo_safari.png" alt="Logo Safari" onerror="this.src='https://via.placeholder.com/200?text=logo_safari.png'">
                             </div>
-                            <p class="mt-3 text-[10px] font-black text-gray-400 uppercase tracking-widest">Corporación Safari</p>
+                            <p class="mt-2 text-[8px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest">Corporación Safari</p>
                         </div>
                         
-                        <div class="h-28 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
+                        <div class="h-16 md:h-28 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
                         
                         <div class="text-center group">
-                            <div class="w-44 h-44 rounded-full bg-white shadow-xl flex items-center justify-center border-4 border-purple-200 overflow-hidden transition-transform group-hover:scale-105">
-                                <img src="logo_luma.png" alt="Logo Luma" onerror="this.src='https://via.placeholder.com/200?text=logo_luma.png'">
+                            <div class="w-24 h-24 md:w-44 md:h-44 rounded-full bg-white shadow-xl flex items-center justify-center border-2 md:border-4 border-purple-200 overflow-hidden">
+                                <img src="logo_luma.jpg" alt="Logo Luma" onerror="this.src='https://via.placeholder.com/200?text=logo_luma.jpg'">
                             </div>
-                            <p class="mt-3 text-[10px] font-black text-gray-400 uppercase tracking-widest">Luma en Resina</p>
+                            <p class="mt-2 text-[8px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest">Luma en Resina</p>
                         </div>
                     </div>
 
-                    <div class="text-center max-w-2xl px-6">
-                        <div class="inline-block px-6 py-2 bg-indigo-700 text-white text-[11px] font-black rounded-full mb-8 uppercase tracking-[0.3em] shadow-xl">Aliados Estratégicos</div>
+                    <div class="text-center max-w-2xl px-2 md:px-6">
+                        <div class="inline-block px-4 py-1 md:px-6 md:py-2 bg-indigo-700 text-white text-[9px] md:text-[11px] font-black rounded-full mb-6 md:mb-8 uppercase tracking-[0.3em] shadow-xl">Aliados Estratégicos</div>
                         
-                        <h1 class="text-6xl font-black text-gray-900 mb-4 leading-[1] uppercase tracking-tighter">
+                        <h1 class="text-3xl sm:text-4xl md:text-6xl font-black text-gray-900 mb-4 leading-tight uppercase tracking-tighter">
                             Propuesta Comercial<br>
                             <span class="text-indigo-700">Hotel Tequendama</span>
                         </h1>
                         
-                        <h2 class="text-3xl font-bold text-gray-400 mb-12 italic">
+                        <h2 class="text-xl md:text-3xl font-bold text-gray-400 mb-8 md:mb-12 italic">
                             Colección "Herencia Paisa"
                         </h2>
 
-                        <div class="h-1.5 w-64 bg-gradient-to-r from-purple-600 via-indigo-500 to-green-500 mx-auto mb-12 rounded-full"></div>
+                        <div class="h-1 w-32 md:w-64 bg-gradient-to-r from-purple-600 via-indigo-500 to-green-500 mx-auto mb-8 md:mb-12 rounded-full"></div>
                         
-                        <div class="bg-white/70 backdrop-blur-md border border-gray-100 rounded-[40px] p-10 grid grid-cols-2 gap-10 text-left shadow-sm">
-                            <div class="border-r border-gray-100 pr-10">
-                                <p class="text-[11px] uppercase font-black text-indigo-600 mb-2 tracking-widest">Presentado por</p>
-                                <p class="text-lg font-bold text-gray-800 leading-tight tracking-tight">Corp. Safari</p>
-                                <p class="text-xs text-gray-400 italic mt-1 font-medium">Gestión & Diseño</p>
+                        <div class="bg-white/70 backdrop-blur-md border border-gray-100 rounded-[20px] md:rounded-[40px] p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 text-left shadow-sm">
+                            <div class="md:border-r border-gray-100 md:pr-10">
+                                <p class="text-[9px] md:text-[11px] uppercase font-black text-indigo-600 mb-1 md:2 tracking-widest">Presentado por</p>
+                                <p class="text-md md:text-lg font-bold text-gray-800 leading-tight">Corp. Safari</p>
+                                <p class="text-[10px] md:text-xs text-gray-400 italic mt-1 font-medium">Gestión & Diseño</p>
                             </div>
-                            <div>
-                                <p class="text-[11px] uppercase font-black text-green-600 mb-2 tracking-widest">Producción</p>
-                                <p class="text-lg font-bold text-gray-800 leading-tight tracking-tight">Luma Artesanal</p>
-                                <p class="text-xs text-gray-400 italic mt-1 font-medium">Hecho en Antioquia</p>
+                            <div class="pt-4 md:pt-0">
+                                <p class="text-[9px] md:text-[11px] uppercase font-black text-green-600 mb-1 md:2 tracking-widest">Producción</p>
+                                <p class="text-md md:text-lg font-bold text-gray-800 leading-tight">Luma Artesanal</p>
+                                <p class="text-[10px] md:text-xs text-gray-400 italic mt-1 font-medium">Hecho en Antioquia</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="text-center text-gray-400 font-bold tracking-[0.6em] text-[10px] uppercase py-10">
+                <div class="text-center text-gray-400 font-bold tracking-[0.4em] md:tracking-[0.6em] text-[8px] md:text-[10px] uppercase py-6 md:py-10">
                     Medellín · Enero 2026
                 </div>
             </section>
 
-            <!-- PÁGINA 2: VISUALES (Extensiones actualizadas a .jpg) -->
-            <section id="page-2" class="page-sheet p-12 bg-white">
-                <div class="flex items-center justify-between mb-8 pb-4 border-b-2 border-gray-50">
-                    <div class="flex items-center gap-4">
-                        <img src="logo_safari.png" alt="" class="h-8 object-contain" onerror="this.style.display='none'">
+            <!-- PÁGINA 2: VISUALES -->
+            <section id="page-2" class="page-sheet p-6 md:p-12 bg-white">
+                <div class="flex items-center justify-between mb-4 md:mb-8 pb-2 md:pb-4 border-b-2 border-gray-50">
+                    <div class="flex items-center gap-2 md:gap-4">
+                        <img src="logo_safari.png" alt="" class="h-6 md:h-8 object-contain" onerror="this.style.display='none'">
                         <span class="text-gray-200">|</span>
-                        <img src="logo_luma.png" alt="" class="h-8 object-contain" onerror="this.style.display='none'">
+                        <img src="logo_luma.jpg" alt="" class="h-6 md:h-8 object-contain" onerror="this.style.display='none'">
                     </div>
-                    <div class="text-[11px] font-black text-indigo-700 uppercase tracking-widest">Catálogo Visual 2026</div>
+                    <div class="text-[9px] md:text-[11px] font-black text-indigo-700 uppercase tracking-widest">Catálogo Visual 2026</div>
                 </div>
 
-                <div class="flex-grow flex flex-col justify-around">
-                    <!-- Sección Manillas -->
-                    <div class="bg-slate-50/50 p-6 rounded-[32px] border border-slate-100 shadow-sm">
-                        <h3 class="text-xs font-black mb-6 text-indigo-700 uppercase tracking-widest flex items-center gap-4">
-                            <span class="w-12 h-0.5 bg-indigo-700"></span> 
+                <div class="flex-grow flex flex-col justify-around gap-4">
+                    <div class="bg-slate-50/50 p-4 md:p-6 rounded-[20px] md:rounded-[32px] border border-slate-100 shadow-sm">
+                        <h3 class="text-[10px] md:text-xs font-black mb-4 md:mb-6 text-indigo-700 uppercase tracking-widest flex items-center gap-2 md:gap-4">
+                            <span class="w-8 md:w-12 h-0.5 bg-indigo-700"></span> 
                             Inspiración Botánica
                         </h3>
-                        <div class="grid grid-cols-2 gap-6">
-                            <!-- Manilla 2 - Actualizado a .jpg -->
-                            <div class="img-container aspect-[4/3] rounded-3xl shadow-sm bg-white border border-slate-100">
+                        <div class="grid grid-cols-2 gap-3 md:gap-6">
+                            <div class="img-container aspect-[4/3] rounded-xl md:rounded-3xl shadow-sm bg-white border border-slate-100">
                                 <img src="manilla_2.jpg" alt="Manilla 2" onerror="handleMissingImg(this, 'manilla_2.jpg')">
                             </div>
-                            <!-- Manilla 1 - Actualizado a .jpg -->
-                            <div class="img-container aspect-[4/3] rounded-3xl shadow-sm bg-white border border-slate-100">
+                            <div class="img-container aspect-[4/3] rounded-xl md:rounded-3xl shadow-sm bg-white border border-slate-100">
                                 <img src="manilla_1.jpg" alt="Manilla 1" onerror="handleMissingImg(this, 'manilla_1.jpg')">
                             </div>
                         </div>
-                        <p class="text-[12px] text-slate-500 text-center mt-4 italic font-medium">Piezas que encapsulan la riqueza botánica de Santa Elena.</p>
                     </div>
 
-                    <!-- Sección Lapicero - Actualizado a .jpg -->
-                    <div class="bg-slate-50/50 p-6 rounded-[32px] border border-slate-100 shadow-sm">
-                        <h3 class="text-xs font-black mb-6 text-green-700 uppercase tracking-widest flex items-center gap-4">
-                            <span class="w-12 h-0.5 bg-green-700"></span> 
+                    <div class="bg-slate-50/50 p-4 md:p-6 rounded-[20px] md:rounded-[32px] border border-slate-100 shadow-sm">
+                        <h3 class="text-[10px] md:text-xs font-black mb-4 md:mb-6 text-green-700 uppercase tracking-widest flex items-center gap-2 md:gap-4">
+                            <span class="w-8 md:w-12 h-0.5 bg-green-700"></span> 
                             Personalización Corporativa
                         </h3>
-                        <div class="img-container h-40 rounded-3xl shadow-sm bg-white border border-slate-100">
+                        <div class="img-container h-24 md:h-40 rounded-xl md:rounded-3xl shadow-sm bg-white border border-slate-100">
                             <img src="lapicero.jpg" alt="Lapicero Personalizado" onerror="handleMissingImg(this, 'lapicero.jpg')">
                         </div>
-                        <p class="text-[11px] text-slate-500 text-center mt-3 font-bold uppercase tracking-widest">
-                            Referencia: Personalización Exclusiva Tequendama
-                        </p>
                     </div>
 
-                    <!-- Sección Vela -->
-                    <div class="bg-slate-50/50 p-6 rounded-[32px] border border-slate-100 shadow-sm">
-                        <div class="grid grid-cols-2 gap-10 items-center">
-                            <div class="img-container aspect-square rounded-3xl shadow-sm bg-white border border-slate-100">
+                    <div class="bg-slate-50/50 p-4 md:p-6 rounded-[20px] md:rounded-[32px] border border-slate-100 shadow-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-center">
+                            <div class="img-container aspect-square max-h-32 md:max-h-full rounded-xl md:rounded-3xl shadow-sm bg-white border border-slate-100">
                                 <img src="vela.jpg" alt="Escultura Vela" onerror="handleMissingImg(this, 'vela.jpg')">
                             </div>
-                            <div class="pr-6 text-left">
-                                <h3 class="text-sm font-black mb-3 text-indigo-700 uppercase tracking-widest leading-none">Esculturas de Autor</h3>
-                                <p class="text-[12px] text-slate-600 leading-relaxed mb-5 font-medium">
-                                    Objetos geométricos diseñados como piezas de conversación para suites y áreas premium.
+                            <div class="text-center md:text-left">
+                                <h3 class="text-xs md:text-sm font-black mb-2 md:mb-3 text-indigo-700 uppercase tracking-widest leading-none">Esculturas de Autor</h3>
+                                <p class="text-[10px] md:text-[12px] text-slate-600 leading-relaxed mb-4 font-medium">
+                                    Objetos geométricos diseñados como piezas de conversación.
                                 </p>
-                                <div class="bg-indigo-600 text-white px-5 py-2 rounded-2xl text-[9px] font-black uppercase tracking-widest shadow-md inline-block">
+                                <div class="bg-indigo-600 text-white px-4 md:px-5 py-1.5 md:py-2 rounded-2xl text-[8px] md:text-[9px] font-black uppercase tracking-widest shadow-md inline-block">
                                     Artesanía de Lujo
                                 </div>
                             </div>
@@ -206,130 +209,117 @@
                     </div>
                 </div>
 
-                <div class="mt-8 bg-indigo-950 text-white p-8 rounded-[32px] flex justify-between items-center shadow-xl relative overflow-hidden">
+                <div class="mt-4 md:mt-8 bg-indigo-950 text-white p-4 md:p-8 rounded-[20px] md:rounded-[32px] flex justify-between items-center shadow-xl relative overflow-hidden">
                     <div class="absolute right-0 top-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
                     <div>
-                        <p class="text-indigo-400 font-black uppercase text-[10px] tracking-widest mb-1">Status de Producción</p>
-                        <p class="text-xl font-bold tracking-tight">Logística Hotel Tequendama</p>
+                        <p class="text-indigo-400 font-black uppercase text-[8px] md:text-[10px] tracking-widest">Producción</p>
+                        <p class="text-sm md:text-xl font-bold tracking-tight">Logística Hotel Tequendama</p>
                     </div>
-                    <div class="text-right border-l border-white/20 pl-8">
-                        <p class="text-4xl font-black leading-none text-yellow-400">13 ENE</p>
-                        <p class="text-[10px] uppercase font-bold text-indigo-300 mt-1 tracking-widest">Entrega Final</p>
+                    <div class="text-right border-l border-white/20 pl-4 md:pl-8">
+                        <p class="text-xl md:text-4xl font-black leading-none text-yellow-400">13 ENE</p>
+                        <p class="text-[8px] md:text-[10px] uppercase font-bold text-indigo-300 mt-1">Entrega Final</p>
                     </div>
                 </div>
             </section>
 
             <!-- PÁGINA 3: TEXTOS -->
-            <section id="page-3" class="page-sheet p-16 bg-white">
+            <section id="page-3" class="page-sheet p-8 md:p-16 bg-white">
                 <div class="flex-grow">
-                    <h2 class="text-4xl font-black text-gray-900 mb-10 uppercase tracking-tighter border-b-8 border-indigo-100 pb-4">
+                    <h2 class="text-2xl md:text-4xl font-black text-gray-900 mb-6 md:mb-10 uppercase tracking-tighter border-b-4 md:border-b-8 border-indigo-100 pb-4">
                         <span class="text-indigo-600">01.</span> Introducción
                     </h2>
                     
-                    <div class="space-y-8 text-lg text-gray-700 leading-relaxed text-justify">
+                    <div class="space-y-4 md:space-y-8 text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         <p>Estimados directivos del <strong class="text-indigo-700 font-black">Hotel Tequendama</strong>,</p>
                         <p>
-                            Es un honor presentar esta alianza entre <span class="font-bold">Corporación Safari</span> y <span class="font-bold">Luma</span>. Nuestro propósito es transformar la riqueza cultural de Antioquia en objetos de deseo funcionales que hablen de la historia de su hotel.
+                            Es un honor presentar esta alianza. Nuestro propósito es transformar la riqueza cultural en objetos de deseo funcionales.
                         </p>
                         <p>
-                            Para esta primera entrega de <strong>20 unidades</strong>, hemos optimizado cada proceso para asegurar la excelencia en el acabado y el cumplimiento estricto de la fecha: <strong>13 de enero de 2026</strong>.
+                            Para esta entrega de <strong>20 unidades</strong>, garantizamos excelencia y cumplimiento estricto el <strong>13 de enero de 2026</strong>.
                         </p>
                     </div>
 
-                    <h2 class="text-4xl font-black text-gray-900 mt-16 mb-10 uppercase tracking-tighter border-b-8 border-green-100 pb-4">
+                    <h2 class="text-2xl md:text-4xl font-black text-gray-900 mt-10 md:mt-16 mb-6 md:mb-10 uppercase tracking-tighter border-b-4 md:border-b-8 border-green-100 pb-4">
                         <span class="text-green-600">02.</span> El Proceso
                     </h2>
                     
-                    <div class="grid grid-cols-1 gap-6">
-                        <div class="flex items-center gap-6 p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                            <span class="bg-indigo-700 text-white w-12 h-12 rounded-full flex items-center justify-center font-black text-xl shadow-lg flex-shrink-0 italic">1</span>
+                    <div class="grid grid-cols-1 gap-4 md:gap-6 text-xs md:text-sm">
+                        <div class="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
+                            <span class="bg-indigo-700 text-white w-10 md:w-12 h-10 md:h-12 rounded-full flex items-center justify-center font-black text-lg md:text-xl flex-shrink-0 italic">1</span>
                             <div>
-                                <p class="text-sm font-black uppercase text-indigo-700 tracking-widest mb-1">Curaduría Botánica</p>
-                                <p class="text-sm text-slate-600 font-medium leading-snug">Selección manual de especies naturales en Santa Elena.</p>
+                                <p class="font-black uppercase text-indigo-700 tracking-widest mb-1">Curaduría</p>
+                                <p class="text-slate-600 leading-snug">Selección manual de especies naturales.</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-6 p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                            <span class="bg-indigo-700 text-white w-12 h-12 rounded-full flex items-center justify-center font-black text-xl shadow-lg flex-shrink-0 italic">2</span>
+                        <div class="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
+                            <span class="bg-indigo-700 text-white w-10 md:w-12 h-10 md:h-12 rounded-full flex items-center justify-center font-black text-lg md:text-xl flex-shrink-0 italic">2</span>
                             <div>
-                                <p class="text-sm font-black uppercase text-indigo-700 tracking-widest mb-1">Cristalización Epóxica</p>
-                                <p class="text-sm text-slate-600 font-medium leading-snug">Vertido manual de resina grado joyero con protección UV.</p>
+                                <p class="font-black uppercase text-indigo-700 tracking-widest mb-1">Cristalización</p>
+                                <p class="text-slate-600 leading-snug">Vertido manual de resina con protección UV.</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-6 p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                            <span class="bg-indigo-700 text-white w-12 h-12 rounded-full flex items-center justify-center font-black text-xl shadow-lg flex-shrink-0 italic">3</span>
+                        <div class="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
+                            <span class="bg-indigo-700 text-white w-10 md:w-12 h-10 md:h-12 rounded-full flex items-center justify-center font-black text-lg md:text-xl flex-shrink-0 italic">3</span>
                             <div>
-                                <p class="text-sm font-black uppercase text-indigo-700 tracking-widest mb-1">Pulido de Autor</p>
-                                <p class="text-sm text-slate-600 font-medium leading-snug">Acabado manual con efecto espejo de alta transparencia.</p>
+                                <p class="font-black uppercase text-indigo-700 tracking-widest mb-1">Pulido</p>
+                                <p class="text-slate-600 leading-snug">Acabado manual con efecto espejo.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="mt-12 p-10 bg-indigo-50 rounded-[40px] border border-indigo-100 text-center italic">
-                    <p class="text-indigo-900 text-lg font-medium leading-relaxed">
-                        "Cada pieza es una escultura miniatura que congela el tiempo, diseñada para que sus huéspedes lleven consigo la eternidad de Antioquia."
-                    </p>
                 </div>
             </section>
 
             <!-- PÁGINA 4: CIERRE -->
-            <section id="page-4" class="page-sheet p-16 bg-white">
-                <div class="flex-grow flex flex-col justify-center max-w-2xl mx-auto">
-                    <h2 class="text-5xl font-black text-gray-900 mb-12 uppercase tracking-tighter text-center leading-none">
+            <section id="page-4" class="page-sheet p-8 md:p-16 bg-white">
+                <div class="flex-grow flex flex-col justify-center max-w-2xl mx-auto w-full">
+                    <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-8 md:mb-12 uppercase tracking-tighter text-center leading-none">
                         Atención<br><span class="text-indigo-700">Personalizada</span>
                     </h2>
                     
-                    <p class="text-base text-slate-500 text-center mb-16 font-medium leading-relaxed italic">
-                        Estamos listos para transformar su visión corporativa en realidades tangibles y memorables.
-                    </p>
-
-                    <div class="bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#312e81] text-white p-16 rounded-[60px] shadow-2xl relative overflow-hidden border-b-[12px] border-indigo-500">
-                        <div class="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-[100px] -mr-40 -mt-40"></div>
-                        <div class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-400/5 rounded-full blur-[80px] -ml-32 -mb-32"></div>
-                        
-                        <div class="space-y-12 relative z-10">
-                            <div class="flex items-center gap-10">
-                                <div class="w-16 h-16 bg-indigo-500/20 rounded-[22px] flex items-center justify-center border border-indigo-400/30 shadow-lg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/></svg>
+                    <div class="bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#312e81] text-white p-8 md:p-16 rounded-[30px] md:rounded-[60px] shadow-2xl relative overflow-hidden border-b-8 md:border-b-[12px] border-indigo-500">
+                        <div class="space-y-8 md:space-y-12 relative z-10">
+                            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-10 text-center md:text-left">
+                                <div class="w-12 md:w-16 h-12 md:h-16 bg-indigo-500/20 rounded-[18px] md:rounded-[22px] flex items-center justify-center border border-indigo-400/30">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/></svg>
                                 </div>
-                                <div>
-                                    <p class="text-[11px] text-indigo-200 font-black uppercase tracking-[0.4em] mb-2">Directora General</p>
-                                    <p class="text-xl font-bold tracking-tight text-yellow-400 border-b border-yellow-400/30 pb-1">directora@comunidadsafari.com</p>
+                                <div class="overflow-hidden w-full">
+                                    <p class="text-[9px] md:text-[11px] text-indigo-200 font-black uppercase tracking-[0.4em] mb-1 md:mb-2">Directora General</p>
+                                    <p class="text-sm md:text-xl font-bold tracking-tight text-yellow-400 truncate">directora@comunidadsafari.com</p>
                                 </div>
                             </div>
                             
-                            <div class="flex items-center gap-10">
-                                <div class="w-16 h-16 bg-green-500/20 rounded-[22px] flex items-center justify-center border border-green-400/30 shadow-lg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.06 3.973L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-10 text-center md:text-left">
+                                <div class="w-12 md:w-16 h-12 md:h-16 bg-green-500/20 rounded-[18px] md:rounded-[22px] flex items-center justify-center border border-green-400/30">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.06 3.973L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] text-indigo-200 font-black uppercase tracking-[0.4em] mb-2">WhatsApp Business</p>
-                                    <p class="text-xl font-bold tracking-tight text-white">+57 304 424 6664</p>
+                                    <p class="text-[9px] md:text-[11px] text-indigo-200 font-black uppercase tracking-[0.4em] mb-1 md:mb-2">WhatsApp Business</p>
+                                    <p class="text-sm md:text-xl font-bold tracking-tight text-white">+57 304 424 6664</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-20 pt-12 border-t border-indigo-400/20 text-center">
-                            <p class="text-[10px] font-black text-indigo-400 uppercase tracking-[0.5em] mb-4 text-center">Equipo Safari & Luma</p>
+                        <div class="mt-10 md:mt-20 pt-6 md:pt-12 border-t border-indigo-400/20 text-center">
+                            <p class="text-[8px] md:text-[10px] font-black text-indigo-400 uppercase tracking-[0.5em] text-center">Equipo Safari & Luma</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-auto pt-10 text-center">
-                    <p class="text-[11px] text-slate-300 font-black uppercase tracking-[0.8em]">Medellín · 2026</p>
+                <div class="mt-auto pt-6 text-center">
+                    <p class="text-[9px] md:text-[11px] text-slate-300 font-black uppercase tracking-[0.8em]">Medellín · 2026</p>
                 </div>
             </section>
 
-            <!-- Controles de Navegación -->
-            <div class="flex justify-center items-center gap-10 mt-10 no-print pb-20">
-                <button onclick="changePage(-1)" class="bg-white text-indigo-700 w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all border border-indigo-100 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="group-hover:-translate-x-1 transition-transform" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+            <!-- Navegación Responsiva -->
+            <div class="flex justify-center items-center gap-4 md:gap-10 mt-6 md:mt-10 no-print pb-20">
+                <button onclick="changePage(-1)" class="bg-white text-indigo-700 w-10 md:w-14 h-10 md:h-14 rounded-full flex items-center justify-center shadow-xl border border-indigo-100 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
                 </button>
-                <div class="bg-white px-8 py-3 rounded-full shadow-inner border border-gray-100">
-                    <span class="font-black text-gray-700 text-sm tracking-widest uppercase">Hoja <span id="page-indicator" class="text-indigo-700">1</span> / 4</span>
+                <div class="bg-white px-4 md:px-8 py-2 md:py-3 rounded-full shadow-inner border border-gray-100">
+                    <span class="font-black text-gray-700 text-xs md:sm tracking-widest uppercase">Hoja <span id="page-indicator" class="text-indigo-700">1</span> / 4</span>
                 </div>
-                <button onclick="changePage(1)" class="bg-white text-indigo-700 w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all border border-indigo-100 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="group-hover:translate-x-1 transition-transform" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+                <button onclick="changePage(1)" class="bg-white text-indigo-700 w-10 md:w-14 h-10 md:h-14 rounded-full flex items-center justify-center shadow-xl border border-indigo-100 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
                 </button>
             </div>
 
@@ -344,8 +334,8 @@
             const container = img.parentElement;
             container.innerHTML = `
                 <div class="flex flex-col items-center justify-center h-full w-full bg-slate-50 p-4 text-center">
-                    <span class="text-[9px] font-black text-slate-300 uppercase tracking-widest border-b border-slate-100 pb-1 italic">Archivo faltante</span>
-                    <span class="text-[10px] font-bold text-slate-400 mt-2">${name}</span>
+                    <span class="text-[8px] md:text-[9px] font-black text-slate-300 uppercase tracking-widest border-b border-slate-100 pb-1 italic">Archivo faltante</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 mt-2">${name}</span>
                 </div>
             `;
         }
@@ -378,48 +368,59 @@
             try {
                 btn.disabled = true;
                 btn.classList.add('opacity-50', 'cursor-not-allowed');
-                label.classList.remove('hidden');
+                if(label) { label.classList.remove('hidden'); label.innerText = 'Generando...'; }
                 
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF('p', 'mm', 'a4');
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
-
                 const originalPage = currentPage;
 
                 for (let i = 1; i <= totalPages; i++) {
-                    label.innerText = `Procesando hoja ${i}...`;
                     currentPage = i;
                     updateUI();
                     
-                    // Tiempo de espera para renderizado
-                    await new Promise(r => setTimeout(r, 800)); 
+                    await new Promise(r => setTimeout(r, 1000)); // Espera un poco más para carga de imágenes
 
-                    const canvas = await html2canvas(document.getElementById(`page-${i}`), {
+                    const element = document.getElementById(`page-${i}`);
+                    
+                    // SMART PDF FIX: Forzamos dimensiones para la captura
+                    const originalStyle = element.style.cssText;
+                    element.style.width = '210mm';
+                    element.style.height = '297mm';
+                    element.style.display = 'flex';
+
+                    const canvas = await html2canvas(element, {
                         scale: 3, 
                         useCORS: true,
-                        backgroundColor: '#ffffff'
+                        allowTaint: true,
+                        backgroundColor: '#ffffff',
+                        logging: false
                     });
+                    
+                    element.style.cssText = originalStyle;
+                    if (currentPage !== i) element.style.display = 'none';
 
                     const imgData = canvas.toDataURL('image/jpeg', 0.98);
                     if (i > 1) pdf.addPage();
-                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
                 }
 
                 pdf.save('Propuesta_Hotel_Tequendama_Safari_Luma.pdf');
-                label.innerText = '¡Descarga lista!';
+                if(label) { label.innerText = '¡Descarga Exitosa!'; setTimeout(() => label.classList.add('hidden'), 3000); }
                 currentPage = originalPage;
                 updateUI();
-                setTimeout(() => label.classList.add('hidden'), 4000);
 
             } catch (err) {
-                console.error(err);
-                label.innerText = 'Error al exportar';
+                console.error("PDF Error:", err);
+                if(label) label.innerText = 'Error al exportar PDF';
+                setTimeout(() => label.classList.add('hidden'), 3000);
             } finally {
                 btn.disabled = false;
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
             }
         }
+
+        // Inicialización
+        window.onload = updateUI;
     </script>
 </body>
 </html>
